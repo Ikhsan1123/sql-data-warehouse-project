@@ -25,7 +25,7 @@ INSERT INTO silver.crm_cust_info (
     cst_key,
     cst_firstname,
     cst_lastname,
-    cst_material_status,
+    cst_marital_status,
     cst_gndr,
     cst_create_date
 )
@@ -35,10 +35,10 @@ cst_id,
 cst_key,
 trim(cst_firstname) as cst_first_name,
 trim(cst_lastname) as cst_last_name,
-case when UPPER(TRIM(cst_material_status))= 'S' then 'Single'
-	 when UPPER(TRIM (cst_material_status))= 'M' then 'Married'
+case when UPPER(TRIM(cst_marital_status))= 'S' then 'Single'
+	 when UPPER(TRIM (cst_marital_status))= 'M' then 'Married'
 else 'n/a'
-end cst_material_status,
+end cst_marital_status,
 case when UPPER(TRIM(cst_gndr))= 'F' then 'Female'
 	 when UPPER(TRIM (cst_gndr))= 'M' then 'Male'
 else 'n/a'
@@ -205,7 +205,7 @@ RAISE NOTICE 'Silver  Layer Loaded Successfully';
 RAISE NOTICE 'Total Duration: % seconds', EXTRACT(EPOCH FROM (v_batch_end - v_batch_start));
 RAISE NOTICE '================================================';
 
-EXCEPTION
+EXCEPTION 
     WHEN OTHERS THEN
         RAISE NOTICE '================================================';
         RAISE NOTICE 'ERROR DURING LOADING SILVER  LAYER';
